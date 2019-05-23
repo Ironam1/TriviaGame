@@ -69,13 +69,14 @@ var questions = [{
 var timer;
 var time = 15;
 var timeRunning = false;
+var shown;
 //set reset for each question
 
 function resetGame () {
     time = 15;
     $("#timer").text = ("30");
 }
-
+//create timer and display on page
 function startGame () {
     timeRunning = true;
     timer = setInterval(function() {
@@ -83,12 +84,20 @@ function startGame () {
         time -= 1;
         if (time <= 0) {
             clearInterval(timer);
-            alert("time's up!");
+            $("#time-over").html(shown.wrongAnswer1);
+            }
+        }, 1000);
         
-    }
-}//
-, 1000);
 }
-//now i want to make the timer and display it in the div
+//create function to generate random question and display on page
+function getQuestion() {
+    shown = questions[Math.floor(Math.random()*questions.length)];
+    $("#question").html(shown.question);
+    $("#answer1").html(shown.answer[0]);
+    $("#answer2").html(shown.answer[1]);
+    $("#answer3").html(shown.answer[2]);
+    $("#answer4").html(shown.answer[3]);
+    console.log(shown.answer[0]);
+}
 
 
