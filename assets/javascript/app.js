@@ -1,3 +1,5 @@
+
+
 var questions = [{
     question: "What was the first game released by Nintendo?",
     answer: ["Mario Bros.", "Mr. Game & Watch", "Playing cards called, hanafuda", "I don't play games!"],
@@ -48,6 +50,7 @@ var questions = [{
     correctAnswer:"The correct answer is, 1985",
     congratulations: "Hooray! You've guessed correctly!"},
     
+
     {question:"What is the official Nintendo magizine called?",
     answer:["Nintendo Monthly", "Print is dead!", "Nintendo Power", "Nintendo Game and Review"],
     wrongAnswer1:"Sorry, you ran out of time",
@@ -62,3 +65,30 @@ var questions = [{
     correctAnswer:"The correct answer is, Game Boy",
     congratulations: "Hooray! You've guessed correctly!"},
 ]
+
+var timer;
+var time = 15;
+var timeRunning = false;
+//set reset for each question
+
+function resetGame () {
+    time = 15;
+    $("#timer").text = ("30");
+}
+
+function startGame () {
+    timeRunning = true;
+    timer = setInterval(function() {
+        $("#timer").html(time);
+        time -= 1;
+        if (time <= 0) {
+            clearInterval(timer);
+            alert("time's up!");
+        
+    }
+}//
+, 1000);
+}
+//now i want to make the timer and display it in the div
+
+

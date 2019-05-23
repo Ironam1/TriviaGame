@@ -2,16 +2,17 @@
 <html lang="en-US">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="assets/css/style">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
         <script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous"></script>
+        <script src="assets/javascript/app.js"></script>
         <title>Nintendo Trivia Game</title>
     </head>
 
     <body>
-        <div id="timer">Timer</div>
+        <div id="timer">10 sec</div>
 
         <div id="container">
             <div id="question">Question</div>
@@ -22,5 +23,9 @@
         </div>
 
         <div id="final">Final Card</div>
+
+        <script>
+        startGame();
+        </script>
     </body>
 </html>
