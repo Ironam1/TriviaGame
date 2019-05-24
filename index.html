@@ -12,9 +12,8 @@
     </head>
 
     <body>
-        <div id="timer">10 sec</div>
-
-        <div id="container">
+        <div id="container0"></div>   
+            <div id="timer">10 sec</div>        
             <div id="question">Question</div>
             <div id="guesses">
                 <div id="answer1">1</div>
@@ -22,16 +21,25 @@
                 <div id="answer3">3</div>
                 <div id="answer4">4</div>
             </div>
+        </div>
+
+        <div id="container2">
             <div id="time-over">Time Over</div>
-            <div id="wrong-guess">Wrong Guess</div>
             <div id="correct">Correct answer</div>
         </div>
 
-        <div id="final">Final Card</div>
+        <div id="container3">
+            <div id="wrong-guess">wrong guess</div>
+            <div id="correct">correct answer</div>
+        </div>
+
+        <div id="container3">
+            <div id="final">Final Card</div>
+        </div>
 
         <script>
-        startGame();
-        getQuestion();
+        resetGame();
+        
         </script>
     </body>
 </html>

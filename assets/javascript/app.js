@@ -74,7 +74,9 @@ var shown;
 
 function resetGame () {
     time = 15;
-    $("#timer").text = ("30");
+    $("#timer").html(time + " seconds");
+    $("#container").css("display", "none");
+    startGame();
 }
 //create timer and display on page
 function startGame () {
@@ -84,6 +86,8 @@ function startGame () {
         time -= 1;
         if (time <= 0) {
             clearInterval(timer);
+            $("#container").css("display", "none");
+            $("#container2").css("display", "block");
             $("#time-over").html(shown.wrongAnswer1);
             }
         }, 1000);
@@ -92,6 +96,7 @@ function startGame () {
 //create function to generate random question and display on page
 function getQuestion() {
     shown = questions[Math.floor(Math.random()*questions.length)];
+    // $("container").css("display", "block");
     $("#question").html(shown.question);
     $("#answer1").html(shown.answer[0]);
     $("#answer2").html(shown.answer[1]);
