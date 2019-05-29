@@ -62,20 +62,20 @@ var wrongAnswer1 = ("Sorry, you ran out of time");
 var wrongAnswer2 = ("Sorry, your answer was incorrect!");
 var congratulations = ("Hooray! You've guessed correctly!");
 //set reset for each question
-$(document).ready(function() {
+function playGame () {
     $("#reset").hide();
     $("#start").on("click", function () {
         $("#start").hide();
-        startGame();
+        startTimer();
         getQuestion();
     })
-})
+}
 
 
 
 
 //create timer and display on page
-function startGame () {
+function startTimer () {
     $("#correct").hide();
     $("time-over").hide();
     $("#wrong").hide();
@@ -88,7 +88,7 @@ function startGame () {
 function decrement () {
     
         $("#timer").html("<h4>" + time + " seconds</h4>");
-        time --;
+        time--;
             if (time <= -1) {
             long++;
             stop();
@@ -101,8 +101,10 @@ function stop () {
     $("#question").hide();
     $("#timer").hide();
     $("#guesses").hide();
+    $("#correct").show();
     $("#time-over").html(wrongAnswer1);
     $("#correct").html(shown.correctAnswer);
+    console.log("SHOWN " + shown)
     endGame();   
 }
 //create question array
@@ -117,6 +119,7 @@ function getQuestion() {
     
     next = Math.floor(Math.random()*questions.length);
     shown = questions[next];
+    console.log(shown + "SHOWN");
     $("#question").html("<h3>" + shown.question + "</h3>");
     // console.log("answers " + shown.answer);
     for (var i = 0; i < shown.answer.length; i++) {
@@ -138,7 +141,7 @@ function getQuestion() {
 
 function makeGuess (guess) {
     
-    $(document).on("click", ".answerchoice", function () {
+    $(".answerchoice").on("click", function () {
         timeRunning = false;
         guess = parseInt($(this).attr("pick"));
         if (guess === shown.check) {
@@ -156,12 +159,13 @@ function makeGuess (guess) {
             $("#question").hide();
             $("#timer").hide();
             $("#guesses").hide();
+            $("#correct").show();
             $("#correct").html(shown.correctAnswer);
             $("#time-over").html(wrongAnswer2);
         }
         // console.log("correct " + shown.correctAnswer);
-        console.log("check " + shown.check)
-        console.log("guess " + guess);
+        // console.log("check " + shown.check)
+        // console.log("guess " + guess);
         
     })
 }
@@ -169,29 +173,32 @@ function makeGuess (guess) {
 function endGame () {
     clearInterval(timer);
     questArray.push(shown);
-    questions.splice(next, 1);
+    holder.splice(1, 1, shown);
     
     setTimeout (function() {
         if ((right + wrong + long) === count) {
+        timeRunning = false;
         $("#reset").show();
         $("#final").append("<p>Correct: " + right + "</p>");
         $("#final").append("<p>Wrong: " + wrong + "</p");
         $("#final").append("<p>Over Limit: " + long + "</p");
-        
-
+        console.log(questions + "END ARRAY");
+        console.log("HOLDER ARRAY" + questArray);
         } else {
-            startGame();
+            startTimer();
             getQuestion();
         }
     }, 3000);
 }
- $("#reset").on("click", function () {
+ 
+$(document).ready(function() {
+$("#reset").on("click", function () {
      $("#reset").hide();
-     $("#question").empty();
-     $("#guesses").empty();
+     $("#final").hide();
      for (var i = 0; i < questions.length; i++) {
         holder.push(questions[i]);
     }
-    startGame();
+    startTimer();
     getQuestion();
+    })
  })
