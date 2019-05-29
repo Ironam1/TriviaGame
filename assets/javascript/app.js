@@ -1,5 +1,3 @@
-$(document).ready(function () {
-
 var questions = [{
     question: "What was the first game released by Nintendo?",
     answer: ["Mario Bros.", "Mr. Game & Watch", "Playing cards called, hanafuda", "I don't play games!"],
@@ -64,17 +62,17 @@ var wrongAnswer1 = ("Sorry, you ran out of time");
 var wrongAnswer2 = ("Sorry, your answer was incorrect!");
 var congratulations = ("Hooray! You've guessed correctly!");
 //set reset for each question
-
-$("#reset").hide();
-
-$("#start").on("click", function () {
-    $("#start").hide();
-    startGame();
-    getQuestion();
-    for (var i = 0; i < questions.length; i++) {
-        holder.push(questions[i]);
-    }
+$(document).ready(function() {
+    $("#reset").hide();
+    $("#start").on("click", function () {
+        $("#start").hide();
+        startGame();
+        getQuestion();
+    })
 })
+
+
+
 
 //create timer and display on page
 function startGame () {
@@ -120,7 +118,7 @@ function getQuestion() {
     next = Math.floor(Math.random()*questions.length);
     shown = questions[next];
     $("#question").html("<h3>" + shown.question + "</h3>");
-    console.log("answers " + shown.answer);
+    // console.log("answers " + shown.answer);
     for (var i = 0; i < shown.answer.length; i++) {
         var choice = $("<div>");
         choice.addClass("answerchoice");
@@ -161,7 +159,7 @@ function makeGuess (guess) {
             $("#correct").html(shown.correctAnswer);
             $("#time-over").html(wrongAnswer2);
         }
-        console.log("correct " + shown.correctAnswer);
+        // console.log("correct " + shown.correctAnswer);
         console.log("check " + shown.check)
         console.log("guess " + guess);
         
@@ -197,4 +195,3 @@ function endGame () {
     startGame();
     getQuestion();
  })
-})
