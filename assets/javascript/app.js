@@ -1,4 +1,4 @@
-
+$(document).ready(function () {
 
 var questions = [{
     question: "What was the first game released by Nintendo?",
@@ -48,7 +48,7 @@ var questions = [{
     correctAnswer:"The correct answer is, Game Boy"},
     
 ]
-// var questArr = ["question1", "question2", "question3", "question4", "question5", "question6", "question7", "question8", "question9"];
+
 var right = 0;
 var wrong = 0;
 var long = 0;
@@ -65,16 +65,22 @@ var wrongAnswer2 = ("Sorry, your answer was incorrect!");
 var congratulations = ("Hooray! You've guessed correctly!");
 //set reset for each question
 
-function resetGame () {
+$("#reset").hide();
+
+$("#start").on("click", function () {
+    $("#start").hide();
+    startGame();
+    getQuestion();
     for (var i = 0; i < questions.length; i++) {
         holder.push(questions[i]);
     }
-    console.log(holder);
-    startGame();
-    getQuestion();
-}
+})
+
 //create timer and display on page
 function startGame () {
+    $("#correct").hide();
+    $("time-over").hide();
+    $("#wrong").hide();
     if (!timeRunning) {
         timer = setInterval(decrement, 1000);
             time = 10;
@@ -99,14 +105,12 @@ function stop () {
     $("#guesses").hide();
     $("#time-over").html(wrongAnswer1);
     $("#correct").html(shown.correctAnswer);
-    // startGame();
     endGame();   
 }
 //create question array
 //create function to generate random question and display on page
 function getQuestion() {
-    $("#correct").empty();
-    $("time-over").empty();
+    
     $("#question").empty();    
     $("#guesses").empty();
     $("#question").show();
@@ -124,7 +128,7 @@ function getQuestion() {
         choice.attr("pick", i);
         $("#guesses").append(choice);
     }
-
+    makeGuess();
     // $("container").css("display", "block");
     // $("#question").html(shown.question);
     // $("#answer1").text(shown.answer[0]);
@@ -168,18 +172,10 @@ function endGame () {
     clearInterval(timer);
     questArray.push(shown);
     questions.splice(next, 1);
+    
     setTimeout (function() {
-        $("#question").empty();
-        $("#guesses").empty();
-        $("#time-over").empty();
         if ((right + wrong + long) === count) {
-        
-        $("#guesses").empty();
-        $("#correct").empty();
-        $("#wrong-guess").empty();
-        $("#time-over").empty();
-        $("#answer").empty();
-        $("#timer").empty();
+        $("#reset").show();
         $("#final").append("<p>Correct: " + right + "</p>");
         $("#final").append("<p>Wrong: " + wrong + "</p");
         $("#final").append("<p>Over Limit: " + long + "</p");
@@ -190,5 +186,15 @@ function endGame () {
             getQuestion();
         }
     }, 3000);
-
 }
+ $("#reset").on("click", function () {
+     $("#reset").hide();
+     $("#question").empty();
+     $("#guesses").empty();
+     for (var i = 0; i < questions.length; i++) {
+        holder.push(questions[i]);
+    }
+    startGame();
+    getQuestion();
+ })
+})
