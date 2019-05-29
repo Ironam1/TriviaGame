@@ -1,3 +1,24 @@
+body {
+    background-image: url("Nintendo.jpg");
+    background-size: 200px;
+    color: black;
+    font-size: 25px;
+}
+
 #start {
     display: block;
+    font-size: 20px;
+    background-color: white;
+    border: dashed;
+    border-radius: 15px;
+    align-self: center; 
+}
+
+#reset {
+    display: block;
+    font-size: 20px;
+    background-color: white;
+    border: dashed;
+    border-radius: 15px;
+    align-self: center; 
 }
