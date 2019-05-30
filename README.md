@@ -9,3 +9,4 @@ User will be told the correct answer if they have picked the wrong choice and a 
 If the user selects the correct option only the picture will be displayed.
 After the nine questions are shown, the final screen will tally all correct, incorrect and timed out responses and display for the user.
 Also, a reset button will appear allowing a replay.
+I might have spent a little more time on styling, but I was trying to randomize the questions and ensure that each question was displayed a single time. I was unsuccessful in this area.
